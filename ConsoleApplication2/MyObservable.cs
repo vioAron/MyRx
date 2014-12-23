@@ -13,6 +13,7 @@ namespace ConsoleApplication2
                 observer.OnNext(i.ToString(CultureInfo.InvariantCulture));
             }
 
+            observer.OnError(new Exception("aaaaaaaaaaaaaa"));
             return Disposable.Empty;
         }
     }

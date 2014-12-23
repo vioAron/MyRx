@@ -12,12 +12,11 @@ namespace ConsoleApplication2
             //var observable = new MyObservable();
             //var observer = new MyObserver();
 
-            //observable.Subscribe(observer);
+            //observable.Subscribe();
 
             UseMyCache();
 
             Task.Delay(TimeSpan.FromMinutes(1)).Wait();
-            return;
 
             var index = 0;
 
