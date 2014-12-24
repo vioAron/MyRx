@@ -20,8 +20,6 @@ namespace ObservableTimerApp
             base.OnLoad(e);
 
             _scheduler = new SynchronizationContextScheduler(SynchronizationContext.Current);
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
