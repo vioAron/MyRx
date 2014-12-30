@@ -8,6 +8,8 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBox Name="SearchTextBox"></TextBox>
-        <TextBlock Grid.Row="1" Name="SubscribeTextBlock"></TextBlock>
+        <ScrollViewer Grid.Row="1">
+            <TextBlock Name="SubscribeTextBlock"></TextBlock>
+        </ScrollViewer>
     </Grid>
 </Window>
