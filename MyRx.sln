@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservablesImplApp", "ConsoleApplication2\ObservablesImplApp.csproj", "{F33C0D29-FA3A-44ED-8999-AB1AAA4E52F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoApp", "DoApp\DoApp.csproj", "{F17D3F00-C8D1-410C-8FD3-B977AB8C5597}"
@@ -10,6 +12,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRxTestsApp", "MyRxTestsApp\MyRxTestsApp.csproj", "{E6691C4E-3B3B-428E-8459-F816EE844516}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservableTimerApp", "ObservableTimerApp\ObservableTimerApp.csproj", "{A02A69EF-F497-4E1A-9561-203564B6EE05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchApp", "SearchApp\SearchApp.csproj", "{8CC8DC51-3C08-4B85-95F1-89F7D8676D8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{873FE680-8E35-4D9B-B2F3-AEDA869B86CE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +48,10 @@ Global
 		{A02A69EF-F497-4E1A-9561-203564B6EE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A02A69EF-F497-4E1A-9561-203564B6EE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A02A69EF-F497-4E1A-9561-203564B6EE05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CC8DC51-3C08-4B85-95F1-89F7D8676D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC8DC51-3C08-4B85-95F1-89F7D8676D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC8DC51-3C08-4B85-95F1-89F7D8676D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC8DC51-3C08-4B85-95F1-89F7D8676D8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

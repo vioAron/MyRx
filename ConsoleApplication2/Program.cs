@@ -47,7 +47,7 @@ namespace ConsoleApplication2
 
         public static void UseMyCache()
         {
-            int index = 11;
+            var index = 11;
             Observable.Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1)).Subscribe(n =>
             {
                 MyRepository.Instance.Add(index++.ToString());
