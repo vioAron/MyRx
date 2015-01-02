@@ -9,11 +9,29 @@ namespace RestrictingOperatorsApp
     {
         static void Main()
         {
-            Distinct();
+            //Distinct();
 
             //Distinct2();
 
+            DistinctUntilChanged();
+
             Console.ReadKey();
+        }
+
+        private static void DistinctUntilChanged()
+        {
+            var subject = new Subject<int>();
+
+            var distinct = subject.DistinctUntilChanged().Subscribe(Console.WriteLine);
+
+            subject.OnNext(1);
+            subject.OnNext(1);
+            subject.OnNext(2);
+            subject.OnNext(1);
+            subject.OnNext(1);
+            subject.OnNext(2);
+
+            distinct.Dispose();
         }
 
         private static void Distinct2()
