@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Documents;
 
 namespace SearchApp
 {
@@ -23,16 +22,13 @@ namespace SearchApp
         {
             return Observable.Create<string>(observer =>
             {
+                var index = 0;
                 _strings.ForEach(s =>
                 {
-                    if (s.Contains(searchText))
-                    {
-                        Thread.Sleep(1000);
-                        observer.OnNext(s);
-                    }
+                    if (!s.Contains(searchText)) return;
+                    index += 5;
+                    Task.Delay(TimeSpan.FromSeconds(index)).ContinueWith(t => observer.OnNext(s));
                 });
-
-                observer.OnCompleted();
 
                 return Disposable.Empty;
             });
@@ -51,14 +47,11 @@ namespace SearchApp
                 args =>
                 {
                     var resultObservable = GetSearchResult(args);
-                    resultObservable.Buffer(2).ObserveOn(_uiScheduler).Subscribe(results =>
+                    resultObservable.TakeUntil(textChangedObservable).ObserveOn(_uiScheduler).Subscribe(result =>
                     {
-                        foreach (var result in results)
-                        {
-                            SubscribeTextBlock.Text += Environment.NewLine +
-                                                   string.Format("{0} - {1}", DateTime.Now.ToLongTimeString(),
-                                                       result);
-                        }
+                        SubscribeTextBlock.Text += Environment.NewLine +
+                                               string.Format("{0} - {1}", DateTime.Now.ToLongTimeString(),
+                                                   result);
                     });
                 });
         }
