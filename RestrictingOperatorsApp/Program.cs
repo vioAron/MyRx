@@ -13,7 +13,11 @@ namespace RestrictingOperatorsApp
 
             //Distinct2();
 
-            DistinctUntilChanged();
+            //DistinctUntilChanged();
+
+            //TakeUntilApp.SkipUntil1();
+            TakeUntilApp.SkipUntil1();
+            TakeUntilApp.TakeUntil1();
 
             Console.ReadKey();
         }
