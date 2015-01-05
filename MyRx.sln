@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{873FE6
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestrictingOperatorsApp", "RestrictingOperatorsApp\RestrictingOperatorsApp.csproj", "{C25D058C-2B60-48C9-9ED8-6B7054F0D9E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FromEventPatternApp", "FromEventPatternApp\FromEventPatternApp.csproj", "{6293C7E7-3069-49A9-A14F-9D9D3E7BCCD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +59,10 @@ Global
 		{C25D058C-2B60-48C9-9ED8-6B7054F0D9E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C25D058C-2B60-48C9-9ED8-6B7054F0D9E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C25D058C-2B60-48C9-9ED8-6B7054F0D9E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6293C7E7-3069-49A9-A14F-9D9D3E7BCCD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6293C7E7-3069-49A9-A14F-9D9D3E7BCCD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6293C7E7-3069-49A9-A14F-9D9D3E7BCCD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6293C7E7-3069-49A9-A14F-9D9D3E7BCCD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
