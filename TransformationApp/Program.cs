@@ -19,7 +19,18 @@ namespace TransformationApp
 
             Observable.Interval(TimeSpan.FromSeconds(1)).Take(3).Materialize().Subscribe(Console.WriteLine);
 
+            SelectMany();
+
             Console.ReadKey();
+        }
+
+        private static void SelectMany()
+        {
+            Console.WriteLine("SelectMany");
+
+            Observable.Return(3).SelectMany(i => Observable.Range(1, i)).Subscribe(Console.WriteLine);
+
+            Observable.Range(1, 3).SelectMany(i => Observable.Range(1, i)).Subscribe(Console.WriteLine);
         }
     }
 }
