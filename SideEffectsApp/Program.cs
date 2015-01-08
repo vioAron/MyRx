@@ -9,8 +9,31 @@ namespace SideEffectsApp
         {
             SideEffect();
             CorrectedSideEffect();
-
+            Do();
             Console.ReadKey();
+        }
+
+        private static void Log(object onNextValue)
+        {
+            Console.WriteLine("Logging OnNext{0} at {1}", onNextValue, DateTime.Now);
+        }
+
+        private static void Log(Exception onErrorValue)
+        {
+            Console.WriteLine("Logging OnError{0} at {1}", onErrorValue, DateTime.Now);
+        }
+
+        private static void Log()
+        {
+            Console.WriteLine("Logging OnCompleted at {0}", DateTime.Now);
+        }
+
+        private static void Do()
+        {
+            var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(3);
+
+            var result = source.Do(i => Log(i), ex => Log(ex), () => Log()).
+                Subscribe(Console.WriteLine, () => Console.WriteLine("Completed"));
         }
 
         private static void CorrectedSideEffect()
