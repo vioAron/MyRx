@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
@@ -15,7 +16,9 @@ namespace ErrorHandlingApp
 
             //Finally();
 
-            Using();
+            //Using();
+
+            Retry();
 
             Console.ReadKey();
         }
@@ -61,6 +64,20 @@ namespace ErrorHandlingApp
             var result = Observable.Using(() => new MyResource(), resource => source);
 
             result.Take(5).Subscribe(Console.WriteLine);
+        }
+
+        private static void Retry()
+        {
+            var observable = Observable.Create<int>(observer =>
+            {
+                observer.OnNext(1);
+                observer.OnNext(2);
+                observer.OnError(new Exception("aaaaaaaaaaa"));
+
+                return Disposable.Empty;
+            });
+
+            observable.Retry(4).Subscribe(Console.WriteLine);
         }
 
         private class MyResource : IDisposable
