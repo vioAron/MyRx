@@ -14,9 +14,21 @@ namespace CombiningSeqApp
 
             //StartWith();
 
-            Amb();
+            //Amb();
+
+            Merge();
 
             Console.ReadKey();
+        }
+
+        private static void Merge()
+        {
+            var s1 = Observable.Interval(TimeSpan.FromMilliseconds(250)).Take(3);
+            var s2 = Observable.Interval(TimeSpan.FromMilliseconds(150))
+                .Take(5)
+                .Select(i => i + 100);
+            s1.Merge(s2).Subscribe(Console.WriteLine,
+                () => Console.WriteLine("Completed"));
         }
 
         private static void Amb()
