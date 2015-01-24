@@ -13,9 +13,20 @@ namespace ConcurrencyApp
         {
             //OnNextDiffThreads();
 
-            SubscribeOn();
+            //SubscribeOn();
+
+            Deadlock();
 
             Console.ReadKey();
+        }
+
+        private static void Deadlock()
+        {
+            var seq = new Subject<int>();
+
+            var value = seq.First();
+
+            seq.OnNext(1);
         }
 
         private static void SubscribeOn()
