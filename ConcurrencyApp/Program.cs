@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -15,9 +16,49 @@ namespace ConcurrencyApp
 
             //SubscribeOn();
 
-            Deadlock();
+            //Deadlock();
+
+            //PassTheState(Scheduler.NewThread);
+
+            Cancellation(Scheduler.Immediate);
 
             Console.ReadKey();
+        }
+
+        private static void Cancellation(IScheduler scheduler)
+        {
+            Console.WriteLine("started at {0}", DateTime.Now.ToLongTimeString());
+
+            var cancellation = scheduler.Schedule(() => Console.WriteLine(DateTime.Now.ToLongTimeString()));
+
+            cancellation.Dispose();
+        }
+
+        private static void PassTheState(IScheduler scheduler)
+        {
+            const string name = "Lee";
+
+            scheduler.Schedule(name, (_, state) =>
+                {
+                    Console.WriteLine(state);
+                    return Disposable.Empty;
+                });
+
+            var list = new List<int>();
+
+            scheduler.Schedule(list, (innerScheduler, state) =>
+                {
+                    Console.WriteLine(state.Count);
+
+                    return Disposable.Empty;
+                });
+
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Add(3);
+            list.Add(3);
+            list.Add(3);
         }
 
         private static void Deadlock()
