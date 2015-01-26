@@ -5,11 +5,13 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ConcurrencyApp
 {
     class Program
     {
+
         static void Main()
         {
             //OnNextDiffThreads();
@@ -20,9 +22,49 @@ namespace ConcurrencyApp
 
             //PassTheState(Scheduler.NewThread);
 
-            Cancellation(Scheduler.Immediate);
+            //Cancellation(Scheduler.Immediate);
+
+            UseCancellationToken();
 
             Console.ReadKey();
+        }
+
+        private static void UseCancellationToken()
+        {
+            var ints = new List<int>();
+            var cancelToken = Work(Scheduler.Default, ints);
+
+            Task.Delay(2000).ContinueWith((_, token) => ((IDisposable)token).Dispose(), cancelToken);
+        }
+
+        public static IDisposable Work(IScheduler scheduler, List<int> list)
+        {
+            var tokenSource = new CancellationTokenSource();
+            var cancelToken = tokenSource.Token;
+
+            var task = new Task(() =>
+                {
+                    Console.WriteLine();
+                    for (var i = 0; i < 1000; i++)
+                    {
+                        var sw = new SpinWait();
+                        for (var j = 0; j < 3000; j++) sw.SpinOnce();
+                        Console.Write(".");
+
+                        list.Add(i);
+
+                        if (cancelToken.IsCancellationRequested)
+                        {
+                            Console.WriteLine("Cancelation requested");
+                            //cancelToken.ThrowIfCancellationRequested();
+                            return;
+                        }
+                    }
+
+                });
+            task.Start();
+
+            return Disposable.Create(tokenSource.Cancel);
         }
 
         private static void Cancellation(IScheduler scheduler)
