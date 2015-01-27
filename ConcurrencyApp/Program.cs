@@ -24,9 +24,26 @@ namespace ConcurrencyApp
 
             //Cancellation(Scheduler.Immediate);
 
-            UseCancellationToken();
+            //UseCancellationToken();
+
+            Recursion(Scheduler.NewThread);
 
             Console.ReadKey();
+        }
+
+        private static void Recursion(IScheduler scheduler)
+        {
+            Action<Action> work = self =>
+                {
+                    Console.WriteLine("Running");
+                    self();
+                };
+
+            var token = scheduler.Schedule(work);
+
+            Console.ReadKey();
+            Console.WriteLine("Cancelling");
+            token.Dispose();
         }
 
         private static void UseCancellationToken()
