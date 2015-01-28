@@ -26,9 +26,52 @@ namespace ConcurrencyApp
 
             //UseCancellationToken();
 
-            Recursion(Scheduler.NewThread);
+            //Recursion(Scheduler.NewThread);
+
+            //UseImmediateScheduler();
+
+            Console.WriteLine("CurrentThread");
+            Console.WriteLine();
+            UseCurrentThreadScheduler(Scheduler.CurrentThread);
+
+            Console.WriteLine();
+            Console.WriteLine("Immediate");
+            Console.WriteLine();
+            UseCurrentThreadScheduler(Scheduler.Immediate);
 
             Console.ReadKey();
+        }
+
+        private static void UseCurrentThreadScheduler(IScheduler scheduler)
+        {
+            var leafAction = new Action(() => Console.WriteLine("leafAction"));
+
+            var innerAction = new Action(() =>
+                {
+                    Console.WriteLine("innerActionBegin");
+
+                    scheduler.Schedule(leafAction);
+
+                    Console.WriteLine("innerActionEnd");
+                });
+
+            var outerAction = new Action(() => 
+            {
+                Console.WriteLine("outerActionBegin");
+
+                scheduler.Schedule(innerAction);
+
+                Console.WriteLine("outerActionEnd");
+            });
+
+            scheduler.Schedule(outerAction);
+        }
+
+        private static void UseImmediateScheduler()
+        {
+            Console.WriteLine(DateTime.Now.ToLongTimeString());
+
+            Scheduler.Immediate.Schedule(TimeSpan.FromSeconds(5), () => Console.WriteLine("Run!" + DateTime.Now.ToLongTimeString()));
         }
 
         private static void Recursion(IScheduler scheduler)
