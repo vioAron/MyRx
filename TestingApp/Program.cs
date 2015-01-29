@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
@@ -16,9 +17,24 @@ namespace TestingApp
             //ScheduleAndAdvance();
             //ScheduleAndStart();
             //ScheduleAndStartStop();
-            SchedulerCollisions();
+            //SchedulerCollisions();
 
             Console.ReadKey();
+        }
+
+        [Test]
+        public static void Generate5Values_Test()
+        {
+            var scheduler = new TestScheduler();
+
+            var observable = Observable.Interval(TimeSpan.FromSeconds(5), scheduler).Take(5);
+
+            var values = new List<long>();
+            observable.Subscribe(values.Add);
+
+            scheduler.AdvanceTo(TimeSpan.FromSeconds(25).Ticks);
+
+            CollectionAssert.AreEqual(new[] { 0, 1, 2, 3, 4 }, values);
         }
 
         private static void SchedulerCollisions()
