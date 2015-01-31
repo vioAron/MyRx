@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservablesImplApp", "ConsoleApplication2\ObservablesImplApp.csproj", "{F33C0D29-FA3A-44ED-8999-AB1AAA4E52F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoApp", "DoApp\DoApp.csproj", "{F17D3F00-C8D1-410C-8FD3-B977AB8C5597}"
@@ -49,6 +51,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrencyWpfApp", "ConcurrencyWpfApp\ConcurrencyWpfApp.csproj", "{E1020253-5644-4D36-A53D-3FD092A09F0F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingApp", "TestingApp\TestingApp.csproj", "{7E9ED309-3C1A-4A6F-858E-79E5D10D0399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SequencesOfCoincidence", "SequencesOfCoincidence\SequencesOfCoincidence.csproj", "{400732BA-0E69-4978-A71B-D1093170A88E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -140,6 +144,10 @@ Global
 		{7E9ED309-3C1A-4A6F-858E-79E5D10D0399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E9ED309-3C1A-4A6F-858E-79E5D10D0399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E9ED309-3C1A-4A6F-858E-79E5D10D0399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{400732BA-0E69-4978-A71B-D1093170A88E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{400732BA-0E69-4978-A71B-D1093170A88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{400732BA-0E69-4978-A71B-D1093170A88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{400732BA-0E69-4978-A71B-D1093170A88E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
